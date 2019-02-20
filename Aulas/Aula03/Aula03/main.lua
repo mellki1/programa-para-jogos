@@ -38,6 +38,10 @@ local function clica(event)
     print("Quantidade de taps: " .. event.numTaps)
     contaTap = contaTap + 1
     print(contaTap)
+    event.target:setFillColor(1, 0, 0)
+    if (event.numTaps) == 2 then
+        event.target:setFillColor(1, 1, 1)
+    end
 end
 
 for i=1, #quadrados do
