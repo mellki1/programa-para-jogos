@@ -17,7 +17,6 @@ quadrados[1] = display.newRect(w *.2, h *.5, 50, 50)
 quadrados[2] = display.newRect(w *.4, h *.5, 50, 50)
 quadrados[3] = display.newRect(w *.6, h *.5, 50, 50)
 quadrados[4] = display.newRect(w *.8, h *.5, 50, 50)
-
 ]]--
 
 --Cria quadrados
