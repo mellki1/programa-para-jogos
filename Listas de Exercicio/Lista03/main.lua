@@ -6,7 +6,6 @@
 
 -- Your code here
 
-
 --variaveis randons/resposta facil
 local numbersF = {}
 local respostaF = {}
