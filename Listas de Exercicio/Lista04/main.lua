@@ -69,7 +69,6 @@ local function tela2()
     placar:setFillColor(0,0,0)
     for j=1, 4 do
         circle[j] = display.newCircle(w * (j * 3)/15, h *.4, 20) 
-        
     end
    
     aux=1
