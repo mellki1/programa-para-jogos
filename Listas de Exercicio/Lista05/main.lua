@@ -18,6 +18,9 @@ local cont = 0
 local o = 0
 local x = 0
 local y = 0
+local random
+local espera1 = 0
+local espera2 = 0
 --variaveis de erros e acertos
 local player = 0
 local pc = 0
@@ -62,7 +65,9 @@ local function d(event)
     posicoesO[7] = display.newImage("o.png", w *.15, h * .75)
     posicoesO[8] = display.newImage("o.png", w *.5, h * .75)
     posicoesO[9] = display.newImage("o.png", w *.85, h * .75)
-
+    for i = 1, 9 do
+        posicoesO[i].isVisible = false
+    end
     --deixando quadro branco
     --linha 1 
     b[1] = display.newImage("b.png", w *.15, h * .25)
@@ -76,28 +81,29 @@ local function d(event)
     b[7] = display.newImage("b.png", w *.15, h * .75)
     b[8] = display.newImage("b.png", w *.5, h * .75)
     b[9] = display.newImage("b.png", w *.85, h * .75)
-    for i = 1, 9 do
-        posicoesO[i].isVisible = false
-    end
+    
 
     for i=1, 9 do
         vetor[i] = ""
+        print("vetor["..i.."]")
+        print(vetor[i])
     end
+    
 end
+
 if contador == 1 then
     d()
+    --dando nome as posicoes
+    for i=1, 9 do
+        posicoesX[i].myName = tostring(i)
+        posicoesO[i].myName = tostring(i)
+        b[i].myName = tostring(i)
+    end
     contador = 2
 end
+
+
 --funcionalidades
-    
---dando nome as posicoes
-for i=1, 9 do
-    posicoesX[i].myName = tostring(i)
-    posicoesO[i].myName = tostring(i)
-    b[i].myName = tostring(i)
-    print("nameB:"..b[i].myName)
-end
-local c = 1
 --verificando ganhador do game
 local function verificaGanhador(e)
 
@@ -106,7 +112,7 @@ local function verificaGanhador(e)
     else
         vetor[e] = "O"
     end
-    
+    cont = cont + 1
     for i=1, 9 do
         print(vetor[i])
     end
@@ -117,111 +123,134 @@ local function verificaGanhador(e)
     if (string.ends(vetor[1], "X") == true) and (string.ends(vetor[2], "X") == true) and (string.ends(vetor[3], "X") == true) then
         print("primeira possibilidade de vitoria para X")
         player = player + 1
-        timer.performWithDelay(500, d, 1)
+        cont = 0
+        --timer.performWithDelay(500, dxBranco, 1)
         
-    else if (string.ends(vetor[1], "O") == true) and (string.ends(vetor[2], "O") == true) and (string.ends(vetor[3], "O") == true) then
+    elseif (string.ends(vetor[1], "O") == true) and (string.ends(vetor[2], "O") == true) and (string.ends(vetor[3], "O") == true) then
         print("primeira possibilidade de vitoria para O")
         pc = pc + 1
-        timer.performWithDelay(1000, d, 1)
-    end
+        cont = 0
+        --dxBranco()
+    
     --segunda possibilidade de vitoria
-    if (string.ends(vetor[4], "X") == true) and (string.ends(vetor[5], "X") == true) and (string.ends(vetor[6], "X") == true) then
+    elseif (string.ends(vetor[4], "X") == true) and (string.ends(vetor[5], "X") == true) and (string.ends(vetor[6], "X") == true) then
         print("segunda possibilidade de vitoria para X")
         player = player + 1
-        timer.performWithDelay(1000, d, 1)
-    end
-
-    if (string.ends(vetor[4], "O") == true) and (string.ends(vetor[5], "O") == true) and (string.ends(vetor[6], "O") == true) then
+        cont = 0
+        --dxBranco()
+    elseif (string.ends(vetor[4], "O") == true) and (string.ends(vetor[5], "O") == true) and (string.ends(vetor[6], "O") == true) then
         pc = pc + 1
-        timer.performWithDelay(1000, d, 1)
-    end
+        cont = 0
+        --dxBranco()
+
     --terceira possibilidade de vitoria
-    if (string.ends(vetor[7], "X") == true) and (string.ends(vetor[8], "X") == true) and (string.ends(vetor[9], "X") == true) then
+    elseif (string.ends(vetor[7], "X") == true) and (string.ends(vetor[8], "X") == true) and (string.ends(vetor[9], "X") == true) then
         print("terceira possibilidade de vitoria para X")
         player = player + 1
-        timer.performWithDelay(1000, d, 1)
-    end
-
-    if (string.ends(vetor[7], "O") == true) and (string.ends(vetor[8], "O") == true) and (string.ends(vetor[9], "O") == true) then
+        cont = 0
+        --dxBranco()
+    elseif (string.ends(vetor[7], "O") == true) and (string.ends(vetor[8], "O") == true) and (string.ends(vetor[9], "O") == true) then
         pc = pc + 1
-        timer.performWithDelay(1000, d, 1)
-    end
+        cont = 0
+        --dxBranco()
+
     --quarta possibilidade de vitoria
-    if (string.ends(vetor[1], "X") == true) and (string.ends(vetor[4], "X") == true) and (string.ends(vetor[7], "X") == true) then
+    elseif (string.ends(vetor[1], "X") == true) and (string.ends(vetor[4], "X") == true) and (string.ends(vetor[7], "X") == true) then
         print("quarta possibilidade de vitoria para X")
         player = player + 1
-        timer.performWithDelay(1000, d, 1)
-    end
+        cont = 0
+        --dxBranco()
 
-    if (string.ends(vetor[1], "O") == true) and (string.ends(vetor[4], "O") == true) and (string.ends(vetor[7], "O") == true) then
+    elseif (string.ends(vetor[1], "O") == true) and (string.ends(vetor[4], "O") == true) and (string.ends(vetor[7], "O") == true) then
         pc = pc + 1
-        timer.performWithDelay(1000, d, 1)
-    end
+        cont = 0
+        --dxBranco()
+
     --quinta possibilidade de vitoria
-    if (string.ends(vetor[3], "X") == true) and (string.ends(vetor[5], "X") == true) and (string.ends(vetor[8], "X") == true) then
+    elseif (string.ends(vetor[2], "X") == true) and (string.ends(vetor[5], "X") == true) and (string.ends(vetor[8], "X") == true) then
         print("sexta possibilidade de vitoria para X")
         player = player + 1
-        timer.performWithDelay(1000, d, 1)
-    end
+        cont = 0
+        --dxBranco()
 
-    if (string.ends(vetor[3], "O") == true) and (string.ends(vetor[5], "O") == true) and (string.ends(vetor[8], "O") == true) then
+    elseif (string.ends(vetor[2], "O") == true) and (string.ends(vetor[5], "O") == true) and (string.ends(vetor[8], "O") == true) then
         pc = pc + 1
-        timer.performWithDelay(1000, d, 1)
-    end
+        cont = 0
+        --dxBranco()
+
     --sexta possibilidade de vitoria
-    if (string.ends(vetor[3], "X") == true) and (string.ends(vetor[6], "X") == true) and (string.ends(vetor[9], "X") == true) then
+    elseif (string.ends(vetor[3], "X") == true) and (string.ends(vetor[6], "X") == true) and (string.ends(vetor[9], "X") == true) then
         print("sexta possibilidade de vitoria para X")
         player = player + 1
-        timer.performWithDelay(1000, d, 1)
-    end
+        cont = 0
+        --dxBranco()
 
-    if (string.ends(vetor[3], "O") == true) and (string.ends(vetor[6], "O") == true) and (string.ends(vetor[9], "O") == true) then
+    elseif (string.ends(vetor[3], "O") == true) and (string.ends(vetor[6], "O") == true) and (string.ends(vetor[9], "O") == true) then
         pc = pc + 1
-        timer.performWithDelay(1000, d, 1)
-    end
+        cont = 0
+        --dxBranco()
     
     --setima possibilidade de vitoria
-    if (string.ends(vetor[1], "X") == true) and (string.ends(vetor[5], "X") == true) and (string.ends(vetor[9], "X") == true) then
+    elseif (string.ends(vetor[1], "X") == true) and (string.ends(vetor[5], "X") == true) and (string.ends(vetor[9], "X") == true) then
         print("sexta possibilidade de vitoria para X")
         player = player + 1
-        timer.performWithDelay(1000, d, 1)
-    end
+        cont = 0
+        --dxBranco()
 
-    if (string.ends(vetor[1], "O") == true) and (string.ends(vetor[5], "O") == true) and (string.ends(vetor[9], "O") == true) then
+    elseif (string.ends(vetor[1], "O") == true) and (string.ends(vetor[5], "O") == true) and (string.ends(vetor[9], "O") == true) then
         pc = pc + 1
-        timer.performWithDelay(500, d, 1)
-    end
+        cont = 0
+        --dxBranco()
+    
     --oitava possibilidade de vitoria
-    if (string.ends(vetor[3], "X") == true) and (string.ends(vetor[5], "X") == true) and (string.ends(vetor[7], "X") == true) then
+    elseif (string.ends(vetor[3], "X") == true) and (string.ends(vetor[5], "X") == true) and (string.ends(vetor[7], "X") == true) then
         print("oitava possibilidade de vitoria para X")
         player = player + 1
-        timer.performWithDelay(500, d, 1)
-    end
+        cont = 0
+        --dxBranco()
 
-    if (string.ends(vetor[3], "O") == true) and (string.ends(vetor[5], "O") == true) and (string.ends(vetor[7], "O") == true) then
+    elseif (string.ends(vetor[3], "O") == true) and (string.ends(vetor[5], "O") == true) and (string.ends(vetor[7], "O") == true) then
         pc = pc + 1
+        cont = 0
+        --dxBranco()
     end
+    print(pc)
 end
 
 local function clica(event)
+    local pl = player
+    local ppc = pc
     o = tonumber(event.target.myName)
-    if(cont % 2 == 0) then
-        posicoesX[o].isVisible = true
-        b[o].isVisible = false
-        verificaGanhador(o)
-    else
+    --if(cont % 2 == 0) then
+    posicoesX[o].isVisible = true
+    b[o].isVisible = false
+    verificaGanhador(o)
+    --else
+    if (pl == player) and (ppc == pc) and (cont < 9) then
+        o = math.random( 1, 9 )
+        while ((string.ends(vetor[o],"X") == true) or (string.ends(vetor[o], "O") == true)) do
+                o = math.random(1, 9)
+                print("continuando.....")
+        end
         posicoesO[o].isVisible = true
         b[o].isVisible = false
         verificaGanhador(o)
+    else
+        cont = 0
+        for i = 1, 9 do
+            b[i].isVisible = true
+        end
+        d()
     end
-    cont = cont + 1
-    timer.performWithDelay(500, d, 1)
+    if(ppc < pc) then
+        cont = 0
+        for i = 1, 9 do
+            b[i].isVisible = true
+        end
+        d()
+    end
 end
-
 
 for i=1, 9 do 
     b[i]:addEventListener("tap", clica)
 end
-
- 
-
