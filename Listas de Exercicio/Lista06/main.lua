@@ -3,17 +3,17 @@
 -- main.lua
 --
 -----------------------------------------------------------------------------------------
-
+--http://goo.gl/BQmKUb
 -- Your code here
+--variaveis para o display
 local w = display.contentWidth
 local h = display.contentHeight
-local fundo = display.newRect(w*.5, h*.5, 320, 480)
-fundo:setFillColor(1, 1, 1)
+local background
 
---local bola = display.newCircle(w*.5, h*.5, 25)
---bola:setFillColor(0, 0, 1)
-
-local plane = display.newImageRect("plane.jpg", 75, 75)
+--display
+backgorund = display.newImage("ceu.jpg", w *.5, h * .5) --backgorund
+backgorund:scale(1,2)
+local plane = display.newImageRect("bird.png", 75, 75)
 plane.x = w *.5
 plane.y = h *.5
 
@@ -58,6 +58,7 @@ local function mover(e)
             passosY = 0
             passosX = -3
             plane.rotation = 180
+            plane.rotation = 330
         end
     elseif e.phase == "ended" then
         passosX = 0
@@ -66,11 +67,21 @@ local function mover(e)
 end
 
 local function update (e)
-    --bola.x = bola.x + passosX
-    --bola.y = bola.y + passosY
-    plane.x = plane.x + passosX
-    plane.y = plane.y + passosY
-    --controlar os limites da tela
+    if((plane.x + passosX) < 286) and ((plane.x + passosX) > 34) then
+        plane.x = plane.x + passosX
+    else
+        passosX = 0
+        passosY = 0
+    end
+        
+    if((plane.y + passosY) < 480) and ((plane.y + passosY) > 0) then
+        plane.y = plane.y + passosY
+    else
+        passosX = 0
+        passosY = 0
+    end
+    
+    
 end
 
 for i=1, #buttons do
