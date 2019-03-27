@@ -10,12 +10,6 @@ local h = display.contentHeight
 local fundo = display.newRect(w*.5, h*.5, 320, 480)
 fundo:setFillColor(1, 1, 1)
 
---local bola = display.newCircle(w*.5, h*.5, 25)
---bola:setFillColor(0, 0, 1)
-
---[[local plane = display.newImageRect("plane.jpg", 75, 75)
-plane.x = w *.5
-plane.y = h *.5]]--
 
 local sheetData = {
     width = 45,
