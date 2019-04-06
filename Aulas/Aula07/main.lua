@@ -7,8 +7,7 @@
 -- Your code here
 local w = display.contentWidth
 local h = display.contentHeight
-local fundo = display.newRect(w*.5, h*.5, 320, 480)
-fundo:setFillColor(1, 1, 1)
+local fundo = display.newImage("fundo.jpg", w*.5, h*.4)
 
 
 local sheetData = {
@@ -33,10 +32,20 @@ local sequeceData = {
 
 local player = display.newSprite(sheet, sequeceData)
 player.x = w *.5
-player.y = h *.5
+player.y = h *.97
 player.myName = "player"
 
 player:setSequence("paradoDireita")
+
+
+local chao = display.newRect(w*.5, h*.99, w, 50)
+--Adicionando fisica ao jogo
+local physics = require("physics") -- importando a libary da fisica
+physics.start() -- inicia a libary physics
+
+physics.addBody(player, "dynamic", {bounce = 0})
+physics.addBody(chao, "static")
+--chao:toBack()
 
 local buttons = {}
 buttons[1] = display.newImageRect("seta1.png", 50, 50) --esquerda
@@ -64,9 +73,10 @@ local passosX = 0
 local function mover(e)
     if e.phase == "began" or e.phase == "moved" then
         if e.target.myName == "cima" then
-            passosY = -3
-            passosX = 0
-            player:setSequence("moveCima")
+            --passosY = -3
+            --passosX = 0
+            --player:setSequence("moveCima")
+            --player:applyLinearImpulse(0, 0.2, player.x, player.y)
         elseif e.target.myName == "baixo" then
             passosY = 3
             passosX = 0
@@ -96,20 +106,7 @@ local function mover(e)
 end
 
 local function update (e)
-   player.x = player.x + passosX
-   player.y = player.y + passosY
-   
-    if player.x > (w + 50) then
-        player.x = -20
-    elseif player.x < -25 then
-        player.x = w + 50
-    end
-
-    if player.y > (h+50) then
-        player.y = -20
-    elseif player.y < -25 then
-        player.y = h + 50
-    end
+   fundo.x = fundo.x - passosX
     player:play()
 end
 
@@ -117,4 +114,8 @@ for i=1, #buttons do
     buttons[i]:addEventListener("touch", mover)
 end
 
+local function pula(e)
+    player:applyLinearImpulse(0, 0.5, player.x, player.y)
+end
+buttons[2]:addEventListener("tap", pula)
 Runtime:addEventListener("enterFrame", update)
