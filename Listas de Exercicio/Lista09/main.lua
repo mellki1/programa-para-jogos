@@ -19,7 +19,10 @@ local x = 0
 local y = 0
 local fundo = display.newImage("back.png", w *.5, h * .5) 
 local placar = display.newText(x, w*.5, h * .7, native.systemFont, 60)
-local obstaculo = display.newImage(240, 0, 5, 20)
+local obstaculo = display.newImageRect("rain.png", 50, 50) 
+local song = audio.loadStream( "rain.mp3" )
+
+local backgroundMusicChannel = audio.play( song, { channel=1, loops=-1} )
 
 local sheetData = {
     width = 115,
@@ -42,16 +45,11 @@ player.myName = "player"
 
 player:setSequence("parado")
 
-
-local chao = display.newRect(w*.5, h*.6, w, 50)
 --Adicionando fisica ao jogo
 local physics = require("physics") -- importando a libary da fisica
 physics.start() -- inicia a libary physics
 physics.addBody(obstaculo, "dynamic")
 physics.addBody(player, "static", {bounce = 0})
-
-chao:toBack()
-
 
 
 local buttons = {}
@@ -109,9 +107,9 @@ local function update (e)
         x = 0
     end
     
-    if (obstaculo.y > 380) or (obstaculo.y < -21) or (obstaculo.x > 480) then
+    if x == 0 then
         obstaculo.x = math.random( 0, 480 )
-        obstaculo.y = -20
+        obstaculo.y = -5
         obstaculo.isFixedRotation = true
     end
 
@@ -126,9 +124,7 @@ Runtime:addEventListener("enterFrame", update)
 
 local function colidiu(e)
     --o que fazer quando detectar uma colisão
-        obstaculo.x = math.random( 0, 480 )
-        obstaculo.y = -20
-        obstaculo.isFixedRotation = true
+        x = 0
         y = 0
 end
 
