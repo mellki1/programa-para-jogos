@@ -8,13 +8,38 @@ local scene = composer.newScene()
 -- -----------------------------------------------------------------------------------
  
  
-local function mudacena()
+local function mudacena1()
     local options = {
         effect = "zoomOutInFadeRotate",
         time = 300
     }
     composer.gotoScene("cena1", options)
 end
+
+local function mudacena2()
+    local options = {
+        effect = "zoomOutInFadeRotate",
+        time = 300
+    }
+    composer.gotoScene("cena2", options)
+end
+
+local function mudacena3()
+    local options = {
+        effect = "zoomOutInFadeRotate",
+        time = 300
+    }
+    composer.gotoScene("cena3", options)
+end
+
+local function mudacena4()
+    local options = {
+        effect = "zoomOutInFadeRotate",
+        time = 300
+    }
+    composer.gotoScene("cena4", options)
+end
+
 -- -----------------------------------------------------------------------------------
 -- Scene event functions
 -- -----------------------------------------------------------------------------------
@@ -94,8 +119,10 @@ function scene:create( event )
 
 
 
-    menu1:addEventListener("tap", mudacena)
-
+    menu1:addEventListener("tap", mudacena1)
+    menu2:addEventListener("tap", mudacena2)
+    menu3:addEventListener("tap", mudacena3)
+    menu4:addEventListener("tap", mudacena4)
 end
  
  
