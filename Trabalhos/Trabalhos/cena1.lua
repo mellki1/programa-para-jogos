@@ -24,13 +24,34 @@ end
 -- create()
 
 local q = {}
-local x
+local x = {}
+local y = {}
+local b = {}
+local i = 0
+local o
 local w = display.contentWidth
 local h = display.contentHeight
 local function clica(e)
     i = tonumber(e.target.myName)
-    q[i]:setFillColor(0,0,0)
+    print(i)
+    print(q[3].x)
+    print(x[1])
+    if (((i == 1) and (q[2].x ~= x[2])))then
+        q[i].x = x[2]
+        q[3].x = x[1]
+    elseif(((i == 1) and (q[3].x == x[1])))then
+        q[i].x = x[1]
+        q[3].x = x[2]
+    end
+    if ((i == 2) and (q[3].x == x[3]))then
     
+        q[i].x = x[3]
+        q[3].x = x[2]
+    
+    elseif (((i == 2) and (q[3].x == x[2])))then
+        q[i].x = x[2]
+        q[3].x = x[3]
+    end
 end
 
 function scene:create( event )
@@ -41,32 +62,46 @@ function scene:create( event )
 
     local back = display.newRect(sceneGroup, w*.5, h*.5, 500, 500)
     back: setFillColor(0.5,0.8,1)
+    local back1 = display.newRect(sceneGroup, w*.5, h*.5, 300, 300)
+    back1: setFillColor(0,0,0,0.5)
+
+    x[1] = 58
+    y[1] = 139
+    q[1] = display.newImage(sceneGroup, "Images/i1.png", x[1], y[1])
+
+    x[2] = 160
+    y[2] = 139
+    q[2]= display.newImage(sceneGroup, "Images/i2.png", x[2], y[2])
     
-    q[1] = display.newImage(sceneGroup, "Images/i1.png", w*.18,h*.29 , 100, 100)
+    x[3] = 262
+    y[3] = 139
+    q[3] = display.newImage(sceneGroup, "Images/i3.png", x[3], y[3])
+    --q[3].alpha = 0.6
 
-    q[2]= display.newImage(sceneGroup, "Images/i2.png", w*.50,h*.29 , 100, 100)
-    
-
-    q[3] = display.newRect(sceneGroup, w*.82,h*.29 , 100, 100)
-    q[3]:setFillColor(0,0,0)
-
-    q[4] = display.newImage(sceneGroup, "Images/i4.png",w*.18,h*.50 ,100,100)
+    x[4] = 58
+    y[4] = 240
+    q[4] = display.newImage(sceneGroup, "Images/i4.png",x[4], y[4])
    
+    x[5] = 160
+    y[5] = 240
+    q[5] = display.newImage(sceneGroup, "Images/i5.png", x[5], y[5])
 
-    q[5] = display.newImage(sceneGroup, "Images/i5.png", w*.50,h*.50 ,100,100)
-
-
-    q[6] = display.newImage(sceneGroup, "Images/i6.png",w*.82,h*.50 ,100,100)
+    x[6] = 262
+    y[6] = 240
+    q[6] = display.newImage(sceneGroup, "Images/i6.png",x[6], y[6])
    
+    x[7] = 58
+    y[7] = 341
+    q[7] = display.newImage(sceneGroup, "Images/i7.png",x[7], y[7])
 
-    q[7] = display.newImage(sceneGroup, "Images/i7.png",w*.18,h*.71 ,100,100)
-
-
-    q[8] = display.newImage(sceneGroup, "Images/i8.png",w*.50,h*.71 ,100,100)
+    x[8] = 160
+    y[8] = 341
+    q[8] = display.newImage(sceneGroup, "Images/i8.png",x[8], y[8])
  
+    x[9] = 262
+    y[9] = 341
+    q[9] = display.newImage(sceneGroup, "Images/i9.png",x[9], y[9])
 
-    q[9] = display.newImage(sceneGroup, "Images/i9.png",w*.82,h*.71 ,100,100)
-    x = 3
     --dando nome as posicoes
     for i=1, 9 do
         q[i].myName = tostring(i)
