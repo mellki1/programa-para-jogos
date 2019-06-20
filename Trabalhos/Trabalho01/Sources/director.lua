@@ -7,7 +7,6 @@ function director:changeScene (moduleName)
 
     local background
     local logo
-    local mascote
     local localGroup
 
     local loadFunction = function()
@@ -18,19 +17,12 @@ function director:changeScene (moduleName)
         background.alpha = 1
 
         if self.scene == "main" then
-            mascote = display.newImageRect(localGroup, "Images/mascote.jpg", 150, 150)
-            mascote.x = w * .5
-            mascote.y = h * .2
-            
             logo = display.newImageRect(localGroup, "Images/logo.png", 320, 180)
             logo.x = w * .5
             logo.y = h * .5
 
-           
-            
             transition.from(logo, {delay=300, time=300, alpha=0, xScale=.5, yScale=.5, transition=easing.outExpo})
             transition.from(background, {delay=400, time=300, alpha=0})
-            transition.from(mascote, {delay=700, time=300, alpha=0, xScale=.5, yScale=.5, transition=easing.outExpo})
         end
     end
 

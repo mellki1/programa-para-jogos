@@ -15,36 +15,36 @@ local background
 --Funcoes
 
 local touchEvent
-local freeMemory
 
 --Funcoes Principais
 function _M.new()
 	local localGroup = display.newGroup()
 	
-	local background = display.newRect(localGroup, 0, 0, w, h)
-	background.x = w * .5
-	background.y = h * .5
-	background:setFillColor(255, 255, 255)         
+	local q1 = display.newRect(w*.19,h*.30 ,100,100)
+	q1: setFillColor(0.1,0.8,0.5)
 
-	local button = display.newImageRect(localGroup, "Images/button.png", 150, 50 )
-	button.x = w *.5 
-	button.y = h *.5 
+	local q2 = display.newRect(w*.50,h*.30 ,100,100)
+	q2: setFillColor(1,0,0)
 
-	local buttonText = display.newText(localGroup, "Má oee", 0, 0, nil, 30 )
-	buttonText.x = button.x
-	buttonText.y = button.y
+	local q3 = display.newRect(w*.81,h*.30 ,100,100)
+	q3: setFillColor(1,1,0)
 
-	local test = function()
-		freeMemory()
-		director:changeScene("Sources.menu")
-	end
+	local q4 = display.newRect(w*.19,h*.50 ,100,100)
+	q4: setFillColor(0,1,0)
 
-	timer.performWithDelay(2000, test)
+	local q5 = display.newRect(w*.50,h*.50 ,100,100)
+	q5: setFillColor(0.1,0.8,0.5)
 
-	freeMemory = function()
-		display.remove(localGroup)
-		localGroup = nil 
-	end
+	local q6 = display.newRect(w*.81,h*.50 ,100,100)
+	q6: setFillColor(1,0,0)
+
+	local q7 = display.newRect(w*.19,h*.70 ,100,100)
+	q7: setFillColor(0.1,0.8,0.5)
+
+	local q8 = display.newRect(w*.50,h*.70 ,100,100)
+	q8: setFillColor(1,0,0)
+
+	local q9 = display.newRect(w*.81,h*.70 ,100,100)
 
 	return localGroup
 end
