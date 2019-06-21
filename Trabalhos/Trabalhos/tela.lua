@@ -1,45 +1,33 @@
+-----------------------------------------------------------------------------------
+-- Scene event functions
+-- -----------------------------------------------------------------------------------
 local composer = require( "composer" )
  
 local scene = composer.newScene()
- 
--- -----------------------------------------------------------------------------------
--- Code outside of the scene event functions below will only be executed ONCE unless
--- the scene is removed entirely (not recycled) via "composer.removeScene()"
--- -----------------------------------------------------------------------------------
- 
-
-local function mudacena()
+local function mudacena1()
     local options = {
-        effect = "crossFade",
-        time = 300
+        effect = "fade",
+        time = 5000
     }
-    composer.removeScene( "cena2", true )
-    composer.gotoScene("cena1", options)
+    composer.gotoScene("menu", options)
 end
--- -----------------------------------------------------------------------------------
--- Scene event functions
--- -----------------------------------------------------------------------------------
- 
+
 -- create()
 function scene:create( event )
  
     local sceneGroup = self.view
     -- Code here runs when the scene is first created but has not yet appeared on screen
-    local w = display.contentWidth
-    local h = display.contentHeight
-    local back = display.newRect(sceneGroup, w*.5, h*.5, 500, 500)
-    back: setFillColor(0.5,0.8,1)
-    
-    local imagem = display.newImage(sceneGroup, "Images/bg1.png", w *.5, h *.5)
 
-    local button1= display.newRect(sceneGroup, w *.5, h *.9, 200, 30)
-    button1:setFillColor(0, 1, 0)
-    button1:addEventListener("tap", mudacena)
-    local myText = display.newText(sceneGroup, "Voltar para o Game" ,w *.5, h *.9, native.systemFont, 16)
-    myText:setFillColor(0,0,0)
+    local w = display.contentWidth -- representa a largura da tela
+	local h = display.contentHeight -- altura da tela
+
+    local back = display.newRect(sceneGroup, w*.5, h*.5, 500, 500)
+    back: setFillColor(1,1,1)
+    local back1 = display.newImage(sceneGroup, "Images/image.png", w*.5, h*.5)
+    mudacena1()
 end
  
-
+ 
 -- show()
 function scene:show( event )
  
@@ -48,7 +36,7 @@ function scene:show( event )
  
     if ( phase == "will" ) then
         -- Code here runs when the scene is still off screen (but is about to come on screen)
- 
+        
     elseif ( phase == "did" ) then
         -- Code here runs when the scene is entirely on screen
  
@@ -77,7 +65,6 @@ function scene:destroy( event )
  
     local sceneGroup = self.view
     -- Code here runs prior to the removal of scene's view
-    
  
 end
  

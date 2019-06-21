@@ -10,26 +10,19 @@ local scene = composer.newScene()
  
 local function mudacena1()
     local options = {
-        effect = "zoomOutInFadeRotate",
+        effect = "fade",
         time = 300
     }
     composer.gotoScene("cena1", options)
 end
 
-local function mudacena2()
-    local options = {
-        effect = "zoomOutInFadeRotate",
-        time = 300
-    }
-    composer.gotoScene("cena2", options)
-end
 
 local function mudacena3()
     local options = {
-        effect = "zoomOutInFadeRotate",
+        effect = "fade",
         time = 300
     }
-    composer.gotoScene("cena3", options)
+    composer.gotoScene("cena4", options)
 end
 
 -- -----------------------------------------------------------------------------------
@@ -74,19 +67,11 @@ function scene:create( event )
     buttonText.y = button.y
 
 
-	local button2 = display.newImageRect(sceneGroup, "Images/button.png", 220, 50 )
-	button2.x = w *.5 
-    button2.y = button.y + button.height*.5 + 40
-    
-
-	local buttonText2 = display.newText(sceneGroup, "Space", 0, 0, nil, 30 )
-	buttonText2:setFillColor(1, 1, 1)
-	buttonText2.x = button2.x
-	buttonText2.y = button2.y
+	
 
 	local button3 = display.newImageRect(sceneGroup, "Images/button.png", 220, 50 )
 	button3.x = w *.5 
-	button3.y = button2.y + button2.height*.5 + 40
+	button3.y = button.y + button.height*.5 + 40
 
 	local buttonText3 = display.newText(sceneGroup, "Creditos", 0, 0, nil, 30 )
 	buttonText3:setFillColor(1, 1, 1)
@@ -95,7 +80,7 @@ function scene:create( event )
 
 
     button:addEventListener("tap", mudacena1)
-    button2:addEventListener("tap", mudacena2)
+
     button3:addEventListener("tap", mudacena3)
 
 end
